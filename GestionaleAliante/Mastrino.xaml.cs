@@ -616,7 +616,10 @@ namespace GestionaleAliante
             cmbCliente.ItemsSource = new AlianteLinqDataContext().Clientes.OrderBy(s => s.RagioneSociale);
             cmbCliente.DisplayMemberPath = "RagioneSociale";
         }
+
         int printcount = 0;
+
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
  
