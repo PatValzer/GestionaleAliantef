@@ -1,0 +1,101 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" x:Class="GestionaleAliante.MainWindow"
+        Title="Gestionale Aliante" Height="701.694" Width="1189.665" FontFamily="Rockwell" Background="#FF2E2E2E" BorderBrush="Black" WindowState="Maximized">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate1" TargetType="{x:Type TextBoxBase}">
+            <Themes:ListBoxChrome x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderFocused="{TemplateBinding IsKeyboardFocusWithin}" SnapsToDevicePixels="True">
+                <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+            </Themes:ListBoxChrome>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid Margin="0,0,-8,-139" Background="#FFE5E5E5">
+        <DockPanel HorizontalAlignment="Center" Height="21" LastChildFill="False" Margin="100,1,58,0" VerticalAlignment="Top" Width="912" >
+            <Menu HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="913" Margin="0,0,0,-2">
+                <MenuItem Header="Noleggio" FontFamily="Rockwell" FontSize="14"  >
+                    <MenuItem Header="Aggiungi" Click="MenuItem_Click_2"/>
+                </MenuItem>
+                <MenuItem Header="Cliente" FontFamily="Rockwell" FontSize="14"  >
+                    <MenuItem Header="Aggiungi" Click="MenuItem_Click_1"  />
+                </MenuItem>
+                <MenuItem Header="Banca" FontFamily="Rockwell" FontSize="14"  >
+                    <MenuItem Header="Aggiungi" Click="MenuItem_Click_3"  />
+                </MenuItem>
+                <MenuItem Header="Mastrino" FontFamily="Rockwell" FontSize="14" Click="MenuItem_Click_4" />
+            </Menu>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Center" Height="64" LastChildFill="False" Margin="506,27,58,0" VerticalAlignment="Top" Width="506" Background="White">
+
+            <Grid Margin="0,0,0,24" Width="467">
+                <CheckBox x:Name="cbxAperto" Content="Aperto" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="True" Margin="15,41,0,-15" RenderTransformOrigin="1.055,0.5" Checked="cbxDaProrogare_Copy_Checked" Unchecked="cbxDaProrogare_Copy_Checked"/>
+                <CheckBox x:Name="cbxChiuso" Content="Chiuso" HorizontalAlignment="Left" RenderTransformOrigin="1.765,0.312" IsChecked="True" Margin="15,16,0,10" VerticalAlignment="Center" Checked="cbxDaProrogare_Copy_Checked" Unchecked="cbxDaProrogare_Copy_Checked"/>
+                <CheckBox x:Name="cbxChiusoDaPagare" Content="Chiuso (in attesa di pagamento)" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="True" Margin="113,16,0,10" Checked="cbxDaProrogare_Copy_Checked" Unchecked="cbxDaProrogare_Copy_Checked"/>
+                <CheckBox x:Name="cbxDaProrogare" Content="Da Prorogare" Height="20" VerticalAlignment="Top" Margin="113,41,247,-21" IsChecked="True" Checked="cbxDaProrogare_Copy_Checked" Unchecked="cbxDaProrogare_Copy_Checked"/>
+                <CheckBox x:Name="cbxApertoNonPagato" Content="Aperto (Insoluto)" Height="20" VerticalAlignment="Top" IsChecked="True" Margin="316,41,44,-21" Checked="cbxDaProrogare_Copy_Checked" Unchecked="cbxDaProrogare_Copy_Checked"/>
+            </Grid>
+        </DockPanel>
+
+        <DockPanel HorizontalAlignment="Center" Height="534" LastChildFill="False" Margin="22,114,29,0" VerticalAlignment="Top" Width="1139" >
+            <DataGrid x:Name="dgNoleggi" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  RowHeight="25" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" IsReadOnly="True" CanUserResizeColumns="False" CanUserAddRows="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1138" Height="524" AutoGenerateColumns="False"  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+        				Binding="{Binding NumeroProroga}" Header="N.PROROGA" Width="80"/>
+                    <DataGridTextColumn
+        				Binding="{Binding dataComincioNoleggio, StringFormat=\{0:dd/MM/yyyy\}}" Header="DAL" />
+                    <DataGridTextColumn 
+        				Binding="{Binding dataProssimaProroga, StringFormat=\{0:dd/MM/yyyy\}}" Header="AL" />
+                    <DataGridTextColumn
+        				Binding="{Binding CostoMetroQuadro, StringFormat=\{0:c\}}" Header="COSTO MQ" />
+                    <DataGridTextColumn 
+        				Binding="{Binding MetriQuadri}" Header="MQ" />
+                    <DataGridTextColumn 
+        				Binding="{Binding Indirizzo}" Header="INDIRIZZO" />
+
+                    <DataGridTextColumn
+        				Binding="{Binding RagioneSociale}" Header="RAGIONE SOCIALE" />
+
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="AButton" Width="25" Height="25" Click="AButton_Click_1" Cursor="Hand" BorderBrush="White" CommandParameter="{Binding idNoleggio}" Background="#FFF6F6F6">
+                                    <Image Source="Immagini\edit.png" Height="15" Width="15"/>
+                                </Button>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="AButton" Width="25" Height="25" Click="AButton_Click_2" Cursor="Hand" BorderBrush="White" CommandParameter="{Binding idNoleggio}">
+                                    <Button.Background>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                            <GradientStop Color="#FFEBEBEB" Offset="0"/>
+                                            <GradientStop Color="#FFDDDDDD" Offset="0"/>
+                                            <GradientStop Color="White" Offset="0"/>
+                                        </LinearGradientBrush>
+                                    </Button.Background>
+                                    <Image Source="Immagini\delete.png" Height="15" Width="15"/>
+                                </Button>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <DockPanel Margin="40,46,720,0" HorizontalAlignment="Center" LastChildFill="False"  VerticalAlignment="Top"  >
+            <TextBox x:Name="txtRicerca" HorizontalAlignment="Left" Height="45" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" Template="{DynamicResource TextBoxBaseControlTemplate1}" TextChanged="txtRicerca_TextChanged" VerticalContentAlignment="Center" FontSize="16"/>
+
+        </DockPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ALIANTE" Class="AlianteLinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SC-03\SQL2012;Initial Catalog=ALIANTE;User ID=sa" SettingsObjectName="GestionaleAliante.Properties.Settings" SettingsPropertyName="ALIANTEConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AltriCosti" Member="AltriCostis">
+    <Type Name="AltriCosti">
+      <Column Name="idAltriCosti" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Noleggio_AltriCosti" Member="Noleggio" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Noleggio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cliente" Member="Clientes">
+    <Type Name="Cliente">
+      <Column Name="idIndirizzo" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RagioneSociale" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="IdCliente" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PartitIva" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Cliente_Noleggio" Member="Noleggios" ThisKey="IdCliente" OtherKey="idCliente" Type="Noleggio" />
+      <Association Name="Indirizzo_Cliente" Member="Indirizzo" ThisKey="idIndirizzo" OtherKey="IdIndirizzo" Type="Indirizzo" IsForeignKey="true" />
+      <Association Name="Banca_Cliente" Member="Banca" ThisKey="idBanca" OtherKey="idBanca" Type="Banca" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Indirizzo" Member="Indirizzos">
+    <Type Name="Indirizzo">
+      <Column Name="IdIndirizzo" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Via" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="NumeroCivico" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Citta" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Provincia" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="Indirizzo_Cliente" Member="Clientes" ThisKey="IdIndirizzo" OtherKey="idIndirizzo" Type="Cliente" />
+      <Association Name="Indirizzo_Noleggio" Member="Noleggios" ThisKey="IdIndirizzo" OtherKey="idIndirizzo" Type="Noleggio" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwGeneraFattura" Member="vwGeneraFatturas">
+    <Type Name="vwGeneraFattura">
+      <Column Name="CostoMetroQuadro" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MetriQuadri" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IVA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dataComincioNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dataFineNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="pathPdfContratto" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="CostoMetroQuadroProroga" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PdfContratto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PdfNotaSpese" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RagioneSociale" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="PartitIva" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Via" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="NumeroCivico" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Citta" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Provincia" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroFattura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataFattura" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DescrizioneNoleggio" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="IsCorpo" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="CostoCorpo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostoCorpoProroga" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NotaCredito" Member="NotaCreditos">
+    <Type Name="NotaCredito">
+      <Column Name="idNotaCredito" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="idFattura" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Intestazione" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="NumeroFatturaDaStornare" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Iva" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ImportoTotaleIvato" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Noleggio_NotaCredito" Member="Noleggio" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Noleggio" IsForeignKey="true" />
+      <Association Name="Fattura_NotaCredito" Member="Fattura" ThisKey="idFattura" OtherKey="IdFattura" Type="Fattura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Materiale" Member="Materiales">
+    <Type Name="Materiale">
+      <Column Name="idMateriale" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DescrizioneMateriale" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="CodiceMateriale" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ResiduoDiMagazzino" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Ordine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Materiale_MaterialeNoleggio" Member="MaterialeNoleggios" ThisKey="idMateriale" OtherKey="idMateriale" Type="MaterialeNoleggio" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MaterialeNoleggio" Member="MaterialeNoleggios">
+    <Type Name="MaterialeNoleggio">
+      <Column Name="idMateriale" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Quantità" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Materiale_MaterialeNoleggio" Member="Materiale" ThisKey="idMateriale" OtherKey="idMateriale" Type="Materiale" IsForeignKey="true" />
+      <Association Name="Noleggio_MaterialeNoleggio" Member="Noleggio" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Noleggio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Camion" Member="Camions">
+    <Type Name="Camion">
+      <Column Name="idCamion" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DescrizioneCamion" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Banca" Member="Bancas">
+    <Type Name="Banca">
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IBAN" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="NomeBanca" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="ABI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CAB" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IsBancaAliante" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="Banca_Cliente" Member="Clientes" ThisKey="idBanca" OtherKey="idBanca" Type="Cliente" />
+      <Association Name="Banca_Proroga" Member="Prorogas" ThisKey="idBanca" OtherKey="idBanca" Type="Proroga" />
+      <Association Name="Banca_Noleggio" Member="Noleggios" ThisKey="idBanca" OtherKey="idBanca" Type="Noleggio" />
+      <Association Name="Banca_PagamentoIntervento" Member="PagamentoInterventos" ThisKey="idBanca" OtherKey="idBanca" Type="PagamentoIntervento" />
+      <Association Name="Banca_PagamentoProroga" Member="PagamentoProrogas" ThisKey="idBanca" OtherKey="idBanca" Type="PagamentoProroga" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Proroga" Member="Prorogas">
+    <Type Name="Proroga">
+      <Column Name="IdProrogra" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DataInizio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataFine" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idFattura" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Insoluto" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Pagato" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="NumeroProroga" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataScadenzaPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ImportoTotaleIvato" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Iva" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="IsCorpo" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="IntestazioneProroga" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="ImportoNotaDiCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescrizioneNotaDiCredito" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNotaDiCredito" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bonifico" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DataPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Proroga_PagamentoProroga" Member="PagamentoProrogas" ThisKey="IdProrogra" OtherKey="idProroga" Type="PagamentoProroga" />
+      <Association Name="Banca_Proroga" Member="Banca" ThisKey="idBanca" OtherKey="idBanca" Type="Banca" IsForeignKey="true" />
+      <Association Name="Noleggio_Proroga" Member="Noleggio" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Noleggio" IsForeignKey="true" />
+      <Association Name="Fattura_Proroga" Member="Fattura" ThisKey="idFattura" OtherKey="IdFattura" Type="Fattura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Noleggio" Member="Noleggios">
+    <Type Name="Noleggio">
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CostoMetroQuadro" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MetriQuadri" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IVA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="idCliente" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dataComincioNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idIndirizzo" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dataFineNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="pathPdfContratto" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="CostoMetroQuadroProroga" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PdfContratto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PdfNotaSpese" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="idFattura" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dataProssimaProroga" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DescrizioneNoleggio" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="NoleggioChiuso" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="IsCorpo" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostoCorpo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CostoCorpoProroga" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="NumeroProroga" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Noleggio_AltriCosti" Member="AltriCostis" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="AltriCosti" />
+      <Association Name="Noleggio_NotaCredito" Member="NotaCreditos" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="NotaCredito" />
+      <Association Name="Noleggio_MaterialeNoleggio" Member="MaterialeNoleggios" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="MaterialeNoleggio" />
+      <Association Name="Noleggio_Proroga" Member="Prorogas" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Proroga" />
+      <Association Name="Noleggio_Pagamento" Member="Pagamentos" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Pagamento" />
+      <Association Name="Noleggio_Intervento" Member="Interventos" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Intervento" />
+      <Association Name="Banca_Noleggio" Member="Banca" ThisKey="idBanca" OtherKey="idBanca" Type="Banca" IsForeignKey="true" />
+      <Association Name="Cliente_Noleggio" Member="Cliente" ThisKey="idCliente" OtherKey="IdCliente" Type="Cliente" IsForeignKey="true" />
+      <Association Name="Indirizzo_Noleggio" Member="Indirizzo" ThisKey="idIndirizzo" OtherKey="IdIndirizzo" Type="Indirizzo" IsForeignKey="true" />
+      <Association Name="Fattura_Noleggio" Member="Fattura" ThisKey="idFattura" OtherKey="IdFattura" Type="Fattura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwNoleggi" Member="vwNoleggis">
+    <Type Name="vwNoleggi">
+      <Column Name="idCliente" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RagioneSociale" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="CostoMetroQuadro" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MetriQuadri" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IVA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dataComincioNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="dataFineNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Indirizzo" Type="System.String" DbType="VarChar(536)" CanBeNull="true" />
+      <Column Name="NoleggioChiuso" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="dataProssimaProroga" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NumeroProroga" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vwFatture" Member="vwFattures">
+    <Type Name="vwFatture">
+      <Column Name="IdFattura" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NumeroFattura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataFattura" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FatturaCantiere" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="FatturaProroga" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="PdfFattura" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DataCreazioneFattura" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CostoMetroQuadro" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MetriQuadri" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IVA" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="idCliente" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dataComincioNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idIndirizzo" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dataFineNoleggio" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="pathPdfContratto" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="CostoMetroQuadroProroga" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PdfContratto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PdfNotaSpese" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="dataProssimaProroga" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="NoleggioChiuso" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="idPagamento" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Pagato" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Insoluto" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DataScadenzaPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RagioneSociale" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TipoFattura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImportoNotaDiCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescrizioneNotaDiCredito" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="bancaRiba" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bonifico" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Pop" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Cr" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DataPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NumeroProroga" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataOperazione" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idNotaDiCredito" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ImportoAcconto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DataAcconto" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataNotaDiCredito" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fattura" Member="Fatturas">
+    <Type Name="Fattura">
+      <Column Name="IdFattura" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NumeroFattura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DataFattura" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FatturaCantiere" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="FatturaProroga" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="PdfFattura" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="DataCreazioneFattura" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TipoFattura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImportoNotaDiCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DataNotaDiCredito" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idNotaDiCredito" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Fattura_NotaCredito" Member="NotaCreditos" ThisKey="IdFattura" OtherKey="idFattura" Type="NotaCredito" />
+      <Association Name="Fattura_Proroga" Member="Prorogas" ThisKey="IdFattura" OtherKey="idFattura" Type="Proroga" />
+      <Association Name="Fattura_Noleggio" Member="Noleggios" ThisKey="IdFattura" OtherKey="idFattura" Type="Noleggio" />
+      <Association Name="Fattura_Intervento" Member="Interventos" ThisKey="IdFattura" OtherKey="idFattura" Type="Intervento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PagamentoIntervento" Member="PagamentoInterventos">
+    <Type Name="PagamentoIntervento">
+      <Column Name="idPagamento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="idIntervento" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Pagato" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DataScadenzaPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Insoluto" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ImportoNotaDiCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescrizioneNotaDiCredito" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNotadiCredito" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bonifico" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DataPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ImportoAcconto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DataAcconto" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataNotaDiCredito" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Banca_PagamentoIntervento" Member="Banca" ThisKey="idBanca" OtherKey="idBanca" Type="Banca" IsForeignKey="true" />
+      <Association Name="Intervento_PagamentoIntervento" Member="Intervento" ThisKey="idIntervento" OtherKey="idIntervento" Type="Intervento" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pagamento" Member="Pagamentos">
+    <Type Name="Pagamento">
+      <Column Name="idPagamento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Pagato" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DataScadenzaPagamento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Insoluto" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ImportoNotaDiCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescrizioneNotaDiCredito" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNotaDiCredito" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bonifico" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DataPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ImportoAcconto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DataAcconto" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataNotaDiCredito" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Noleggio_Pagamento" Member="Noleggio" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Noleggio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PagamentoProroga" Member="PagamentoProrogas">
+    <Type Name="PagamentoProroga">
+      <Column Name="idPagamento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="idProroga" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Pagato" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DataScadenzaPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Insoluto" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ImportoNotaDiCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescrizioneNotaDiCredito" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNotadiCredito" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bonifico" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DataPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ImportoAcconto" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DataAcconto" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataNotaDiCredito" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Banca_PagamentoProroga" Member="Banca" ThisKey="idBanca" OtherKey="idBanca" Type="Banca" IsForeignKey="true" />
+      <Association Name="Proroga_PagamentoProroga" Member="Proroga" ThisKey="idProroga" OtherKey="IdProrogra" Type="Proroga" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Intervento" Member="Interventos">
+    <Type Name="Intervento">
+      <Column Name="idIntervento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descrizione" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="Importo" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="idNoleggio" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Pagato" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="DataScadenzaPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Insoluto" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="idFattura" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NumeroAddetti" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsCorpo" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Ore" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ImportoTotaleIvato" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DataIntervento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Iva" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ImportoIva" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ImportoNotaDiCredito" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DescrizioneNotaDiCredito" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="idNotaDiCredito" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Bonifico" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="idBanca" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DataPagamento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DataNotaDiCredito" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Intervento_PagamentoIntervento" Member="PagamentoInterventos" ThisKey="idIntervento" OtherKey="idIntervento" Type="PagamentoIntervento" />
+      <Association Name="Fattura_Intervento" Member="Fattura" ThisKey="idFattura" OtherKey="IdFattura" Type="Fattura" IsForeignKey="true" />
+      <Association Name="Noleggio_Intervento" Member="Noleggio" ThisKey="idNoleggio" OtherKey="idNoleggio" Type="Noleggio" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

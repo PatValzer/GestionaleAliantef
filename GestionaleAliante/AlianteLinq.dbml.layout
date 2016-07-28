@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.125, 35.625" name="AlianteLinq">
+  <DataContextMoniker Name="/AlianteLinqDataContext" />
+  <nestedChildShapes>
+    <classShape Id="dc90c89b-4b9f-48cf-8b11-f226be47ac5c" isExpanded="false" absoluteBounds="9, 14.375, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/AltriCosti" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e017ac6b-fe37-47d3-adbd-e032b16ee259" absoluteBounds="9.015, 14.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8f5e7831-5217-4450-ba44-b4d0c55abb0e" isExpanded="false" absoluteBounds="3.5, 12.125, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Cliente" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e202e25-493c-4f1a-9298-4a17e696979a" absoluteBounds="3.515, 12.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aa9822fd-8efb-4083-beb5-c5d912c53bec" isExpanded="false" absoluteBounds="0.75, 9.125, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Indirizzo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8b9775c1-c5d8-4c51-a45a-df783adbb1a1" absoluteBounds="0.76500000000000012, 9.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a434c87a-90f8-49a4-ac45-20e8d5585596" isExpanded="false" absoluteBounds="0.75, 0.75, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/vwGeneraFattura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb86123c-a4af-49e8-8432-ba49022047ae" absoluteBounds="0.76499999999999968, 1.21, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.17187375 : 9.575); (2.17187375 : 12.35); (3.5 : 12.35)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Indirizzo/Indirizzo_Cliente" />
+      <nodes>
+        <classShapeMoniker Id="aa9822fd-8efb-4083-beb5-c5d912c53bec" />
+        <classShapeMoniker Id="8f5e7831-5217-4450-ba44-b4d0c55abb0e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4e8250ca-2519-407d-91a4-f81a040814a8" isExpanded="false" absoluteBounds="12, 11.75, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/NotaCredito" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1596124e-88e6-4cbe-9e15-2e336a292d50" absoluteBounds="12.015, 12.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8f35a34c-47ef-444b-b55b-9cd79fc015df" isExpanded="false" absoluteBounds="6.25, 7.125, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Materiale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eefcd6a0-9850-4fa1-9c00-fe3b66adc5b4" absoluteBounds="6.2650000000000006, 7.5850000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="075c81ce-752e-490e-aa84-ffe04931c855" isExpanded="false" absoluteBounds="9, 11.375, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/MaterialeNoleggio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa48d244-dba5-49e3-81d3-52d4a947dfb6" absoluteBounds="9.015, 11.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.49218875 : 7.575); (7.49218875 : 11.67187625); (9 : 11.67187625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Materiale/Materiale_MaterialeNoleggio" />
+      <nodes>
+        <classShapeMoniker Id="8f35a34c-47ef-444b-b55b-9cd79fc015df" />
+        <classShapeMoniker Id="075c81ce-752e-490e-aa84-ffe04931c855" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="3872365b-3e09-4aff-91d0-7f1172da1e6b" isExpanded="false" absoluteBounds="0.75, 1.75, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Camion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="580fe934-19ab-4cc4-abba-ea358ac1d8c2" absoluteBounds="0.76499999999999968, 2.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a75ce7f6-ee30-4c05-9f17-7c7a8bbc0a0f" isExpanded="false" absoluteBounds="0.625, 12.625, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Banca" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1d669ba4-0c5d-4d42-a624-129a21723f11" absoluteBounds="0.63999999999999968, 13.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 12.625); (3.49999999999999 : 12.575)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Banca/Banca_Cliente" />
+      <nodes>
+        <classShapeMoniker Id="a75ce7f6-ee30-4c05-9f17-7c7a8bbc0a0f" />
+        <classShapeMoniker Id="8f5e7831-5217-4450-ba44-b4d0c55abb0e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="eb5bcec4-89fe-4942-8f14-41bdac565127" isExpanded="false" absoluteBounds="11.25, 4.75, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Proroga" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3009a228-c4b5-48fb-971e-b4c60bde338e" absoluteBounds="11.265, 5.21, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(0.65625 : 12.625); (0.65625 : 5.1187525); (6.07291666666667 : 5.1187525 : JumpStart); (6.23958333333333 : 5.1187525 : JumpEnd); (11.25 : 5.1187525)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Banca/Banca_Proroga" />
+      <nodes>
+        <classShapeMoniker Id="a75ce7f6-ee30-4c05-9f17-7c7a8bbc0a0f" />
+        <classShapeMoniker Id="eb5bcec4-89fe-4942-8f14-41bdac565127" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="c075864a-9a63-4382-a039-5dab837c126d" isExpanded="false" absoluteBounds="6.125, 11.875, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Noleggio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9c22f3a0-fe0d-431d-b9b9-c99dcba593bd" absoluteBounds="6.14, 12.335, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.710939375 : 12.325); (7.710939375 : 14.6); (9 : 14.6)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Noleggio/Noleggio_AltriCosti" />
+      <nodes>
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+        <classShapeMoniker Id="dc90c89b-4b9f-48cf-8b11-f226be47ac5c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.125 : 12.0375); (12 : 12.0375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Noleggio/Noleggio_NotaCredito" />
+      <nodes>
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+        <classShapeMoniker Id="4e8250ca-2519-407d-91a4-f81a040814a8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.125 : 11.875); (8.99999999999999 : 11.825)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Noleggio/Noleggio_MaterialeNoleggio" />
+      <nodes>
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+        <classShapeMoniker Id="075c81ce-752e-490e-aa84-ffe04931c855" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.15625 : 11.875); (6.15625 : 4.90312375); (11.25 : 4.90312375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Noleggio/Noleggio_Proroga" />
+      <nodes>
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+        <classShapeMoniker Id="eb5bcec4-89fe-4942-8f14-41bdac565127" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 12.8812525); (5.52604166666667 : 12.8812525 : JumpStart); (5.69270833333333 : 12.8812525 : JumpEnd); (6.36978791666667 : 12.8812525 : JumpStart); (6.53645458333333 : 12.8812525 : JumpEnd); (6.8437475 : 12.8812525); (6.8437475 : 12.325)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Banca/Banca_Noleggio" />
+      <nodes>
+        <classShapeMoniker Id="a75ce7f6-ee30-4c05-9f17-7c7a8bbc0a0f" />
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 12.225); (5.52604166666667 : 12.225 : JumpStart); (5.69270833333333 : 12.225 : JumpEnd); (6.125 : 12.225)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Cliente/Cliente_Noleggio" />
+      <nodes>
+        <classShapeMoniker Id="8f5e7831-5217-4450-ba44-b4d0c55abb0e" />
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.21093875 : 9.575); (1.21093875 : 11.96875); (1.58854416666667 : 11.96875 : JumpStart); (1.75521083333333 : 11.96875 : JumpEnd); (2.08854041666667 : 11.96875 : JumpStart); (2.25520708333333 : 11.96875 : JumpEnd); (5.52604166666667 : 11.96875 : JumpStart); (5.69270833333333 : 11.96875 : JumpEnd); (6.125 : 11.96875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Indirizzo/Indirizzo_Noleggio" />
+      <nodes>
+        <classShapeMoniker Id="aa9822fd-8efb-4083-beb5-c5d912c53bec" />
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4f38f490-57db-4b11-926a-691b726ae12c" isExpanded="false" absoluteBounds="4.375, 1, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/vwNoleggi" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a84caa3e-5209-48a5-b820-3dc5d03fb867" absoluteBounds="4.39, 1.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="779d77dc-0f5c-4b8f-8d2e-5e1837e99958" absoluteBounds="15.75, 25.875, 2, 9.4629541015625023">
+      <DataClassMoniker Name="/AlianteLinqDataContext/vwFatture" />
+      <nestedChildShapes>
+        <elementListCompartment Id="21de2156-7fd6-4404-b4bf-3810ad8a3284" absoluteBounds="15.765, 26.335, 1.9700000000000002, 8.9029541015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e7f486dc-c480-40c9-8ca8-61131c5efd31" isExpanded="false" absoluteBounds="3.625, 7.625, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Fattura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="429b1751-ca98-4927-a97c-0d7e41b399f7" absoluteBounds="3.6399999999999997, 8.085, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.625 : 7.85); (6.07291666666667 : 7.85 : JumpStart); (6.23958333333333 : 7.85 : JumpEnd); (7.40885541666667 : 7.85 : JumpStart); (7.57552208333333 : 7.85 : JumpEnd); (12.6979191666667 : 7.85 : JumpStart); (12.8645858333333 : 7.85 : JumpEnd); (13.39062625 : 7.85); (13.39062625 : 11.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Fattura/Fattura_NotaCredito" />
+      <nodes>
+        <classShapeMoniker Id="e7f486dc-c480-40c9-8ca8-61131c5efd31" />
+        <classShapeMoniker Id="4e8250ca-2519-407d-91a4-f81a040814a8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.625 : 7.7062475); (6.07291666666667 : 7.7062475 : JumpStart); (6.23958333333333 : 7.7062475 : JumpEnd); (7.40885541666667 : 7.7062475 : JumpStart); (7.57552208333333 : 7.7062475 : JumpEnd); (11.7187475 : 7.7062475); (11.7187475 : 5.2)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Fattura/Fattura_Proroga" />
+      <nodes>
+        <classShapeMoniker Id="e7f486dc-c480-40c9-8ca8-61131c5efd31" />
+        <classShapeMoniker Id="eb5bcec4-89fe-4942-8f14-41bdac565127" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.59375 : 8.075); (5.59375 : 11.9374975); (6.125 : 11.9374975)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Fattura/Fattura_Noleggio" />
+      <nodes>
+        <classShapeMoniker Id="e7f486dc-c480-40c9-8ca8-61131c5efd31" />
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="aae6e86c-abd7-499d-ab14-2668b66c929d" isExpanded="false" absoluteBounds="16.375, 16.25, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/PagamentoIntervento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="41ae051d-4186-4f05-8c67-f3ae2e05fca8" absoluteBounds="16.39, 16.71, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.625 : 13.075); (1.625 : 16.475); (5.52604166666667 : 16.475 : JumpStart); (5.69270833333333 : 16.475 : JumpEnd); (7.19401010416667 : 16.475 : JumpStart); (7.36067677083333 : 16.475 : JumpEnd); (16.375 : 16.475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Banca/Banca_PagamentoIntervento" />
+      <nodes>
+        <classShapeMoniker Id="a75ce7f6-ee30-4c05-9f17-7c7a8bbc0a0f" />
+        <classShapeMoniker Id="aae6e86c-abd7-499d-ab14-2668b66c929d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0c1881fe-5790-4daf-9107-657fd674074d" isExpanded="false" absoluteBounds="18.875, 15.625, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Pagamento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b03f58e-9923-426e-ac73-d15be59ce00f" absoluteBounds="18.89, 16.085, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.45312125 : 12.325); (6.45312125 : 15.85); (7.19401010416667 : 15.85 : JumpStart); (7.36067677083333 : 15.85 : JumpEnd); (18.875 : 15.85)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Noleggio/Noleggio_Pagamento" />
+      <nodes>
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+        <classShapeMoniker Id="0c1881fe-5790-4daf-9107-657fd674074d" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f3d370ef-6fcb-490a-8837-694119fea061" isExpanded="false" absoluteBounds="16.125, 9.75, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/PagamentoProroga" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ead97c6f-492f-48e7-a9a2-4a232dcf3b50" absoluteBounds="16.14, 10.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.6718775 : 12.625); (1.6718775 : 10.04687625); (2.08854041666667 : 10.04687625 : JumpStart); (2.25520708333333 : 10.04687625 : JumpEnd); (5.51041666666667 : 10.04687625 : JumpStart); (5.69270833333333 : 10.04687625 : JumpEnd); (6.07291666666667 : 10.04687625 : JumpStart); (6.23958333333333 : 10.04687625 : JumpEnd); (7.40885541666667 : 10.04687625 : JumpStart); (7.57552208333333 : 10.04687625 : JumpEnd); (13.3072929166667 : 10.04687625 : JumpStart); (13.4739595833333 : 10.04687625 : JumpEnd); (16.125 : 10.04687625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Banca/Banca_PagamentoProroga" />
+      <nodes>
+        <classShapeMoniker Id="a75ce7f6-ee30-4c05-9f17-7c7a8bbc0a0f" />
+        <classShapeMoniker Id="f3d370ef-6fcb-490a-8837-694119fea061" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.7812525 : 5.2); (12.7812525 : 9.8312475); (13.3072929166667 : 9.8312475 : JumpStart); (13.4739595833333 : 9.8312475 : JumpEnd); (16.125 : 9.8312475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Proroga/Proroga_PagamentoProroga" />
+      <nodes>
+        <classShapeMoniker Id="eb5bcec4-89fe-4942-8f14-41bdac565127" />
+        <classShapeMoniker Id="f3d370ef-6fcb-490a-8837-694119fea061" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="015c9a75-8f49-4330-a99b-41b239dc9637" isExpanded="false" absoluteBounds="13.875, 18.125, 2, 0.45">
+      <DataClassMoniker Name="/AlianteLinqDataContext/Intervento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="21a9845e-eb8c-4fc3-b0ae-b3a98a10831d" absoluteBounds="13.89, 18.585, 1.9700000000000002, 4.4800211588541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(14.875 : 18.125); (14.875 : 16.6187525); (16.375 : 16.6187525)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Intervento/Intervento_PagamentoIntervento" />
+      <nodes>
+        <classShapeMoniker Id="015c9a75-8f49-4330-a99b-41b239dc9637" />
+        <classShapeMoniker Id="aae6e86c-abd7-499d-ab14-2668b66c929d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.609375 : 8.075); (5.609375 : 18.35); (13.875 : 18.35)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Fattura/Fattura_Intervento" />
+      <nodes>
+        <classShapeMoniker Id="e7f486dc-c480-40c9-8ca8-61131c5efd31" />
+        <classShapeMoniker Id="015c9a75-8f49-4330-a99b-41b239dc9637" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.2773434375 : 12.325); (7.2773434375 : 18.2062475); (13.875 : 18.2062475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/AlianteLinqDataContext/Noleggio/Noleggio_Intervento" />
+      <nodes>
+        <classShapeMoniker Id="c075864a-9a63-4382-a039-5dab837c126d" />
+        <classShapeMoniker Id="015c9a75-8f49-4330-a99b-41b239dc9637" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

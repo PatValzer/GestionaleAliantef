@@ -1,0 +1,579 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GestionaleAliante.GestioneNoleggio"
+        Title="GESTIONE NOLEGGIO" Height="581.603" Width="1349.192" FontFamily="Rockwell" Closing="Window_Closing_1" WindowState="Maximized">
+
+
+    <Grid Margin="0,0,-8,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1626*"/>
+            <ColumnDefinition Width="143*"/>
+        </Grid.ColumnDefinitions>
+
+        <TabControl Height="472" Margin="10,10,49,0" VerticalAlignment="Top" Template="{DynamicResource MyTabControlControlTemplate}" Grid.ColumnSpan="2">
+            <TabItem Header="Dati Noleggio" Width="90" Template="{DynamicResource MyTabItemControlTemplate}" HorizontalAlignment="Left" Margin="-2,0,0,0" Height="22">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
+                    <Grid x:Name="grNoleggio" Margin="0,0,10,10">
+
+                        <DockPanel Margin="0,0,309,133"/>
+                        <GroupBox x:Name="gbIndirizzoCantiere" Header="Indirizzo Cantiere" HorizontalAlignment="Left" Margin="403,12,0,0" VerticalAlignment="Top" Height="178" Width="514" BorderBrush="#FF299ADE" Foreground="#FF299ADE">
+                            <UniformGrid HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="267" Rows="5" Columns="2">
+                                <Label Content="Via&#xA;"  HorizontalAlignment="Left" RenderTransformOrigin="-0.605,0.229" Margin="0" FontSize="10"/>
+                                <TextBox x:Name="txtVia" Text="{Binding Via}" TextWrapping="Wrap" RenderTransformOrigin="2.151,-0.121" Height="20" VerticalAlignment="Top" Margin="0" FontSize="10" TabIndex="8"/>
+                                <Label Content="Numero Civico&#xA;" HorizontalAlignment="Left" RenderTransformOrigin="-0.605,0.229" Width="111" Margin="0,0,0,13" FontSize="10" Height="28"/>
+                                <TextBox x:Name="txtNumeroCivico" Text="{Binding NumeroCivico, Converter={StaticResource  NullableValueConverter}}" TextWrapping="Wrap" Margin="0" Height="20" FontSize="10" TabIndex="9"/>
+                                <Label Content="Città&#xA;" HorizontalAlignment="Left" RenderTransformOrigin="-0.605,0.229" Width="99" Margin="0" FontSize="10"/>
+                                <TextBox x:Name="txtCitta" Text="{Binding Citta}" TextWrapping="Wrap" Margin="0" Height="20" FontSize="10" TabIndex="10"/>
+                                <Label Content="Provincia&#xA;" HorizontalAlignment="Left" RenderTransformOrigin="-0.605,0.229" Width="111" Margin="0" FontSize="10"/>
+                                <TextBox x:Name="txtProvincia" Text="{Binding Provincia}" TextWrapping="Wrap" Margin="0,4" Height="20" FontSize="10" TabIndex="11"/>
+                                <Label Content="CAP&#xA;" HorizontalAlignment="Left" RenderTransformOrigin="-0.605,0.229" Width="111" Margin="0" FontSize="10"/>
+                                <TextBox x:Name="txtCAP" Text="{Binding Cap}" TextWrapping="Wrap" Margin="0,4" Height="20" FontSize="10" TabIndex="12"/>
+                            </UniformGrid>
+                        </GroupBox>
+                        <GroupBox Header="Dati Noleggio" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="368" Height="178" BorderBrush="#FF299ADE" Foreground="#FF299ADE">
+                            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="347" Height="243" Margin="0,0,0,-87">
+                                <Grid x:Name="grNoleggioNormale" Margin="10,21,-7,128" >
+                                    <Label Content="Costo al MQ" VerticalAlignment="Center" Margin="0,0,193,69" Height="25"/>
+                                    <TextBox x:Name="txtCostoMetroQuadro" TextWrapping="Wrap" Height="25" TextChanged="txtCostoMetroQuadro_TextChanged" Margin="264,0,0,69" TabIndex="0"/>
+                                    <Label Content="Metri Quadri" VerticalAlignment="Top" Margin="165,70,97,0"/>
+                                    <TextBox x:Name="txtMetriQuadri" TextWrapping="Wrap" Height="25" TextChanged="txtCostoMetroQuadro_TextChanged" Margin="264,68,0,1" TabIndex="3"/>
+                                    <Label Content="Costo al MQ (Proroga)" VerticalAlignment="Center" Margin="0,33,193,36" Height="25"/>
+                                    <TextBox x:Name="txtCostoMetroQuadroProroga" TextWrapping="Wrap" Height="25" TextChanged="txtCostoMetroQuadro_TextChanged" Margin="264,33,0,36" SpellCheck.IsEnabled="True" TabIndex="1"/>
+
+                                </Grid>
+                                <Label Content="IVA" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,89,0,133"/>
+                                <TextBox x:Name="txtIVA" TextWrapping="Wrap" Height="25" TextChanged="txtCostoMetroQuadro_TextChanged" Text="21" Margin="41,89,281,129" RenderTransformOrigin="-0.349,0.6" TabIndex="2">
+                                    <TextBox.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-1.14"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </TextBox.RenderTransform>
+                                </TextBox>
+                                <Label Content="Dal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="7,131,0,91"/>
+                                <DatePicker x:Name="dateInizio" Height="25" SelectedDateChanged="dateInizio_SelectedDateChanged" Margin="41,130,188,88" TabIndex="4"/>
+                                <Label Content="Al" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="175,131,0,91" RenderTransformOrigin="0.864,-1.143"/>
+                                <DatePicker x:Name="dateFine" Height="25" Margin="236,130,-7,88" SelectedDateChanged="dateInizio_SelectedDateChanged" TabIndex="5"/>
+                                <Label Content="%" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="65,89,0,133" RenderTransformOrigin="-0.364,0.81"/>
+                                <Grid x:Name="grNoleggioCorpo" HorizontalAlignment="Left" Height="94" Margin="7,21,0,0" VerticalAlignment="Top" Width="327" d:IsHidden="True">
+                                    <Label Content="Costo Corpo" VerticalAlignment="Center" Margin="0,0,176,69" Height="25"/>
+                                    <TextBox x:Name="txtCostoCorpo" TextWrapping="Wrap" Height="25" TextChanged="txtCostoMetroQuadro_TextChanged" Margin="264,0,-17,69" TabIndex="0"/>
+                                    <Label Content="Costo Corpo (Proroga)" VerticalAlignment="Center" Margin="0,33,176,36" Height="25"/>
+                                    <TextBox x:Name="txtCostoCorpoProroga" TextWrapping="Wrap" Height="25" TextChanged="txtCostoMetroQuadro_TextChanged" Margin="264,33,-17,36" SpellCheck.IsEnabled="True" TabIndex="1"/>
+                                </Grid>
+                                <CheckBox x:Name="cbxCorpo" FontWeight="Bold" BorderBrush="#FF575656"  Content="CORPO" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="196,324,0,-95" Unchecked="cbxCorpo_Unchecked" Checked="cbxCorpo_Checked" TabIndex="15"/>
+
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Cliente" HorizontalAlignment="Left" Margin="10,263,0,0" VerticalAlignment="Top" Width="368" Height="60" BorderBrush="#FF299ADE" Foreground="#FF299ADE">
+                            <ComboBox x:Name="cmbCliente" HorizontalAlignment="Left" VerticalAlignment="Center" Width="346" Height="27" Text="Seleziona un Cliente..." IsEditable="True" IsTabStop="True" TabIndex="7"/>
+                        </GroupBox>
+                        <GroupBox Header="Banca" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Width="368" Height="62" BorderBrush="#FF299ADE" Foreground="#FF299ADE">
+                            <ComboBox x:Name="cmbBanca" HorizontalAlignment="Left" VerticalAlignment="Center" Width="346" Height="27" Text="Seleziona una Banca ..." IsEditable="True" IsTabStop="True" TabIndex="6"/>
+                        </GroupBox>
+                        <GroupBox Header="Note e Contatti" HorizontalAlignment="Left" Margin="403,196,0,0" VerticalAlignment="Top" Height="127" Width="514" BorderBrush="#FF299ADE" Foreground="#FF299ADE">
+                            <TextBox x:Name="txtNote" HorizontalAlignment="Left" Height="101" TextWrapping="Wrap" VerticalAlignment="Top" Width="498" FontSize="10" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TabIndex="13"/>
+                        </GroupBox>
+                        <Image HorizontalAlignment="Left" Height="18" Margin="363,196,0,0" VerticalAlignment="Top" Width="15" Source="Immagini/add.png" Cursor="Hand"/>
+                        <Image HorizontalAlignment="Left" Height="18" Margin="363,263,0,0" VerticalAlignment="Top" Width="15" Source="Immagini/add.png" RenderTransformOrigin="0.8,2.722" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown_1" ToolTip="Aggiungi Nuovo Cliente"/>
+                        <Button x:Name="btnSalva" Content="SALVA" Margin="761,328,0,9" Click="Button_Click_1" FontWeight="ExtraLight" IsEnabled="False" TabIndex="16"/>
+                    </Grid>
+                    <CheckBox x:Name="cbxNoleggioChiuso" Content="NOLEGGIO CHIUSO" HorizontalAlignment="Left" Margin="10,351,0,0" VerticalAlignment="Top" Width="153" FontWeight="Bold" BorderBrush="#FF575656" Checked="cbxNoleggioChiuso_Checked" Unchecked="cbxNoleggioChiuso_Unchecked" TabIndex="14"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabAltriCosti" Header="Altri Costi" Width="90" Template="{DynamicResource MyTabItemControlTemplate}" Padding="0" Margin="-2,0,2,0" Height="22" >
+                <Grid x:Name="grAltriCosti" Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgAltriCosti" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="39,26,0,0" VerticalAlignment="Top" Width="878" Height="176" CanUserDeleteRows="True" RowEditEnding="dgAltriCosti_RowEditEnding" SelectionChanged="dgAltriCosti_SelectionChanged" RowHeight="25" Style="{DynamicResource DataGridStyle1}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" BorderBrush="{x:Null}" RowStyle="{DynamicResource dgRowStyleAliante}" Template="{DynamicResource DataGridControlTemplateAliante}" LoadingRow="dgAltriCosti_LoadingRow">
+
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+        				Binding="{Binding Descrizione}" Header="DESCRIZIONE" Width="400" CanUserResize="False" />
+                            <DataGridTextColumn
+        				Binding="{Binding Importo, StringFormat=\{0:c\}}" Header="IMPORTO" Width="200"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabPagamenti" Header="Pagamenti" Width="90" Template="{DynamicResource MyTabItemControlTemplate}" Padding="0" Margin="-2,0,2,0">
+                <Grid x:Name="grPagamenti" Background="#FFE5E5E5" Margin="0,3,-3,-3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="0*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Importo Totale" HorizontalAlignment="Left" Margin="436,249,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.862,0.446" Height="24" Width="91"/>
+                    <Label Content="IVA" HorizontalAlignment="Left" Margin="496,273,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.862,0.446" Height="24" Width="31"/>
+                    <Label x:Name="lblIVA" HorizontalAlignment="Right" Margin="0,273,2,0" VerticalAlignment="Top" RenderTransformOrigin="0.81,-0.675" Width="71" HorizontalContentAlignment="Right" Padding="0" Height="24" VerticalContentAlignment="Center"/>
+                    <Label x:Name="lblTotale" HorizontalAlignment="Right" Margin="0,249,2,0" VerticalAlignment="Top" RenderTransformOrigin="0.81,-0.675" Width="71" HorizontalContentAlignment="Right" Padding="0" Height="24" VerticalContentAlignment="Center"/>
+                    <Line
+                    	X2="100"
+                    	Stroke="Black" Margin="549,278,2,80" RenderTransformOrigin="1.195,-2.235" Y1="25" Y2="25" />
+                    <Label x:Name="lblSomma" HorizontalAlignment="Right" Margin="0,310,2,0" VerticalAlignment="Top" RenderTransformOrigin="0.81,-0.675" Width="71" HorizontalContentAlignment="Right" Height="23" VerticalContentAlignment="Bottom" Padding="0"/>
+                    <DataGrid x:Name="dgPagamenti" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="1263" Height="176" CanUserDeleteRows="True" CanUserAddRows="True" RowEditEnding="dgPagamenti_RowEditEnding" RowHeight="25" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" LoadingRow="dgPagamenti_LoadingRow">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                    			Binding="{Binding Descrizione}" Header="DESCRIZIONE" Width="200" CanUserResize="False" />
+                            <DataGridTextColumn
+                    			Binding="{Binding Importo, StringFormat=\{0:c\}}" Header="IMPORTO" Width="90" CanUserResize="False"/>
+                            <DataGridTextColumn
+                    			Binding="{Binding ImportoAcconto, StringFormat=\{0:c\}}" Header="ACCONTO" Width="90" CanUserResize="False"/>
+                            <DataGridTemplateColumn Header="Data Acconto" SortMemberPath="DataAcconto" Width="90">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <DatePicker Text="{Binding DataAcconto, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged"></DatePicker>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn IsReadOnly="True"
+                    			Binding="{Binding ImportoNotaDiCredito, StringFormat=\{0:c\}}" Header="Ndc" Width="90" CanUserResize="False"/>
+                            <DataGridTextColumn IsReadOnly="True"
+                    			Binding="{Binding DataNotaDiCredito}" Header="Data Ndc" Width="90" CanUserResize="False"/>
+                            <DataGridTextColumn
+                    			Binding="{Binding ImportoIva, StringFormat=\{0:c\}}" Header="IVA" Width="100" CanUserResize="False" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Bonifico">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <CheckBox Name="auto" HorizontalAlignment="center" IsChecked="{Binding Bonifico, Mode=TwoWay}" Checked="auto_Checked" Unchecked="auto_Checked" />
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Pagato">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <CheckBox   Name="auto" ToolTip="{Binding DataPagamento}" HorizontalAlignment="center" IsChecked="{Binding Pagato, Mode=TwoWay}" Checked="auto_Checked_1" Unchecked="auto_Checked_1" Click="auto_Click"/>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Insoluto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <CheckBox Name="auto" HorizontalAlignment="center" IsChecked="{Binding Insoluto, Mode=TwoWay}"  Checked="auto_Checked_2" Unchecked="auto_Checked_2"/>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Scadenza Pagamento" SortMemberPath="DataScadenzaPagamento">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <DatePicker Text="{Binding DataScadenzaPagamento, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged_1"></DatePicker>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Banca" SortMemberPath="DataScadenzaPagamento">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <ComboBox x:Name="cmbBanchePag"  ItemsSource="{StaticResource  Banche}"  SelectedValue="{Binding idBanca}" SelectedValuePath="idBanca" DisplayMemberPath="NomeBanca"   SelectionChanged="ComboBox_SelectionChanged_1"></ComboBox>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Importo Pagamenti Inseriti" HorizontalAlignment="Left" Margin="39,315,0,0" VerticalAlignment="Top" Height="24" Width="157" />
+                    <Label x:Name="lblTotalePagamentiInseriti" Content="" HorizontalAlignment="Left" Margin="201,310,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.3,-3.875" Width="110" FontSize="16" VerticalContentAlignment="Bottom" Height="29"/>
+                    <TextBox x:Name="txtDescrizionePagamento" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalAlignment="Left" Height="47" Margin="39,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="316" TextChanged="txtDescrizionePagamento_TextChanged"/>
+                    <Label Content="Descrizione Pagamento" HorizontalAlignment="Left" Margin="39,220,0,0" VerticalAlignment="Top" Height="24" Width="140" />
+                    <Button Content="Genera Pagamenti" HorizontalAlignment="Left" Margin="529,359,0,0" VerticalAlignment="Top" Width="118" Click="Button_Click_2" Height="20"/>
+                    <TextBox x:Name="txtPercentualeBonifico" HorizontalAlignment="Left" Height="23" Margin="491,359,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.839,0.304"/>
+                    <Label Content="Percentuale Bonifico" HorizontalAlignment="Left" Margin="368,357,0,0" VerticalAlignment="Top" Height="24" Width="123"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabProroghe" Header="Proroghe" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="90" Template="{DynamicResource MyTabItemControlTemplate}" Padding="0" Margin="-2,0,0,0">
+                <Grid x:Name="grProroghe" Background="#FFE5E5E5" Margin="0,0,-55,0">
+                    <Label Content="Il noleggio dovrà essere prorogato a partire dal" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="481" FontSize="20"/>
+                    <Label x:Name="lblProssimaProroga" Content="Label" HorizontalAlignment="Left" Margin="511,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.415,-0.417" Width="113" FontSize="20" Foreground="#FFDA5252"/>
+                    <Image x:Name="imgAggiungiProroga" HorizontalAlignment="Left" Height="75" Margin="629,10,0,0" VerticalAlignment="Top" Width="78" Source="Immagini/add.png" RenderTransformOrigin="0.8,2.722" Cursor="Hand" MouseLeftButtonDown="imgAggiungiProroga_MouseLeftButtonDown" ToolTip="Aggiungi Proroga"/>
+                    <DataGrid x:Name="dgProroghe" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  RowHeight="25" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Height="217" Width="907" CanUserDeleteRows="True">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="NUMERO FATTURA">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <Label Name="auto" HorizontalAlignment="center" Content="{Binding Fattura.NumeroFattura}"/>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="NUMERO PROROGA">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <Label Name="auto" HorizontalAlignment="center" Content="{Binding NumeroProroga}"/>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn
+        				Binding="{Binding DataInizio, StringFormat=\{0:dd/MM/yyyy\}}" Header="DAL" />
+                            <DataGridTextColumn 
+        				Binding="{Binding DataFine, StringFormat=\{0:dd/MM/yyyy\}}" Header="AL" />
+
+                            <DataGridTemplateColumn Header="Modifica">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="AButton" Width="25" Height="25" Click="AButton_Click_1" Cursor="Hand" BorderBrush="White" CommandParameter="{Binding IdProrogra}" Background="#FFF6F6F6">
+                                            <Image Source="Immagini\edit.png" Height="15" Width="15"/>
+                                        </Button>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Elimina">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="AButton" Width="25" Height="25" Click="AButton_Click_2" Cursor="Hand" BorderBrush="White" CommandParameter="{Binding IdProrogra}">
+                                            <Button.Background>
+                                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                                    <GradientStop Color="#FFEBEBEB" Offset="0"/>
+                                                    <GradientStop Color="#FFDDDDDD" Offset="0"/>
+                                                    <GradientStop Color="White" Offset="0"/>
+                                                </LinearGradientBrush>
+                                            </Button.Background>
+                                            <Image Source="Immagini\delete.png" Height="15" Width="15"/>
+                                        </Button>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabNotaDiCredito" Header="Note di Credito" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="90" Template="{DynamicResource MyTabItemControlTemplate}" Padding="0" RenderTransformOrigin="0.5,0.5" Margin="-2,0,0,0">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.421"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.368"/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
+                <Grid x:Name="grProroghe1" Background="#FFE5E5E5">
+                    <Image x:Name="imgAggiungiNotaDiCredito" HorizontalAlignment="Left" Height="75" Margin="629,10,0,0" VerticalAlignment="Top" Width="78" Source="Immagini/add.png" RenderTransformOrigin="0.8,2.722" Cursor="Hand" ToolTip="Aggiungi Nota di Credito" MouseLeftButtonDown="imgAggiungiNotaDiCredito_MouseLeftButtonDown"/>
+                    <DataGrid x:Name="dgNoteDiCredito" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  RowHeight="25" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Height="217" Width="907"  CanUserDeleteRows="True">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn
+                    					Binding="{Binding Importo, StringFormat=\{0:c\}}" Header="IMPORTO" Width="100" CanUserResize="False"/>
+                            <DataGridTextColumn
+                    					Binding="{Binding ImportoTotaleIvato, StringFormat=\{0:c\}}" Header="IVATO" Width="100" CanUserResize="False"/>
+                            <DataGridTextColumn
+                    					Binding="{Binding Descrizione}" Header="DESCRIZIONE"  CanUserResize="False" Width="200" />
+                            <DataGridTemplateColumn Header="Modifica">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnEditNotaDiCredito" Width="25" Height="25" Cursor="Hand" BorderBrush="White" CommandParameter="{Binding idNotaCredito}" Background="#FFF6F6F6" Click="btnEditNotaDiCredito_Click">
+                                            <Image Source="Immagini/edit.png" Height="15" Width="15"/>
+                                        </Button>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Elimina">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="btnDeleteNotaDiCredito" Width="25" Height="25" Click="btnDeleteNotaDiCredito_Click" Cursor="Hand" BorderBrush="White" CommandParameter="{Binding idNotaCredito}">
+                                            <Button.Background>
+                                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                    <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                                    <GradientStop Color="#FFEBEBEB" Offset="0"/>
+                                                    <GradientStop Color="#FFDDDDDD" Offset="0"/>
+                                                    <GradientStop Color="White" Offset="0"/>
+                                                </LinearGradientBrush>
+                                            </Button.Background>
+                                            <Image Source="Immagini/delete.png" Height="15" Width="15"/>
+                                        </Button>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabFatture" Header="Documenti" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="90" Template="{DynamicResource MyTabItemControlTemplate}" Padding="0" Margin="88,1,-88,-1">
+                <Grid x:Name="grFatture" Background="#FFE5E5E5">
+                    <GroupBox Header="Contratto" HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Foreground="#FF299ADE" BorderBrush="#FF299ADE" Width="166" Height="65">
+                        <Grid Margin="0,0,-2,-11">
+                            <Image x:Name="imgPdf" HorizontalAlignment="Left" Height="30" Margin="10,10,0,0" VerticalAlignment="Top" Width="35" Source="Immagini/pdf.png" ToolTip="Visualizza il Contratto relativo al noleggio" Cursor="Hand" MouseLeftButtonDown="imgPdf_MouseLeftButtonDown"/>
+                            <CheckBox x:Name="cbRicaricaContratto" Content="Ricarica Contratto" HorizontalAlignment="Left" Margin="48,17,0,0" VerticalAlignment="Top" Width="105" FontSize="10"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Prima Fattura" HorizontalAlignment="Left" Margin="15,94,0,0" VerticalAlignment="Top" Foreground="#FF299ADE" BorderBrush="#FF299ADE" Width="333" Height="83">
+                        <Grid Margin="0,0,-2,-11">
+                            <Image x:Name="imgPdfPrimaFattura" HorizontalAlignment="Left" Height="44" Margin="10,11,0,0" VerticalAlignment="Top" Width="35" Source="Immagini/pdf.png" ToolTip="Visualizza la Fattura di Inizio Noleggio" Cursor="Hand" MouseLeftButtonDown="imgPdfPrimaFattura_MouseLeftButtonDown"/>
+                            <CheckBox x:Name="cbRicreaFattura" Content="Ricrea" HorizontalAlignment="Left" Margin="81,10,0,0" VerticalAlignment="Top" Width="146" FontSize="10"/>
+                            <TextBox x:Name="txtNumeroPrimaFattura" HorizontalAlignment="Left" Height="23" Margin="200,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" FontSize="10"/>
+                            <DatePicker x:Name="dpDataPrimaFattura"   SelectedDate="{x:Static sys:DateTime.Now}" HorizontalAlignment="Left" Margin="200,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.308,0.333" FontSize="10" VerticalContentAlignment="Center"/>
+                            <Label Content="N." HorizontalAlignment="Left" Margin="169,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.636,-0.417" FontSize="10"/>
+                            <Label Content="DEL" HorizontalAlignment="Left" Margin="169,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.636,-0.417" Width="48" FontSize="10"/>
+                            <CheckBox x:Name="cbxBonificoPrimaFattura" Content="Bonifico" HorizontalAlignment="Left" Margin="81,38,0,0" VerticalAlignment="Top" Width="83" FontSize="10"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Proroghe" HorizontalAlignment="Left" Margin="366,10,0,0" VerticalAlignment="Top" Foreground="#FF299ADE" BorderBrush="#FF299ADE" Width="551" Height="225">
+                        <DataGrid x:Name="dgFattureProroghe" CanUserDeleteRows="False" HorizontalAlignment="Left" Height="204" VerticalAlignment="Top" Width="541" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"   RowHeight="45" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" CanUserAddRows="False" AutoGenerateColumns="False" FontSize="10" Margin="0,0,-2,0"  >
+
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn >
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" >
+                                                <Image x:Name="imgPdfFatturaProroga" HorizontalAlignment="Left" Height="20"  VerticalAlignment="Top" Source="Immagini/pdf.png" ToolTip="Visualizza la fattura della Proroga" Cursor="Hand" MouseLeftButtonDown="imgPdfFatturaProroga_MouseLeftButtonDown"  />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="DATA FATTURA" SortMemberPath="DataFattura">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <DatePicker SelectedDate="{Binding DataFattura, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged_2"  ></DatePicker>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="N. FATTURA" SortMemberPath="NumeroFattura">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <TextBox  MinWidth="50" Text="{Binding NumeroFattura, Mode=TwoWay}" TextChanged="TextBox_TextChanged_1"></TextBox>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="RICREA">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <CheckBox x:Name="cbxRicreaFatturaProroga" HorizontalAlignment="center" Checked="cbxRicreaFatturaProroga_Checked" Unchecked="cbxRicreaFatturaProroga_Checked"/>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="BONIFICO">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <CheckBox x:Name="cbxBonifico" HorizontalAlignment="center" Checked="cbxBonifico_Checked" Unchecked="cbxBonifico_Checked" />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <GroupBox Header="Nota Spese" HorizontalAlignment="Left" Margin="192,10,0,0" VerticalAlignment="Top" Foreground="#FF299ADE" BorderBrush="#FF299ADE" Width="156" Height="65">
+                        <Grid Margin="0,0,-2,-11">
+                            <Image x:Name="imgPdfNotaSpese1" HorizontalAlignment="Left" Height="29" Margin="10,8,0,0" VerticalAlignment="Top" Width="35" Source="Immagini/pdf.png" ToolTip="Visualizza la nota Spese" Cursor="Hand" MouseLeftButtonDown="imgPdfNotaSpese_MouseLeftButtonDown" RenderTransformOrigin="0.457,0.69"/>
+                            <CheckBox x:Name="cbRicrea" Content="Ricrea" HorizontalAlignment="Left" Margin="48,16,0,0" VerticalAlignment="Top" Width="55" FontSize="10"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Header="Interventi" HorizontalAlignment="Left" Margin="366,240,0,10" Foreground="#FF299ADE" BorderBrush="#FF299ADE" Width="551">
+                        <DataGrid x:Name="dgFattureInterventi" CanUserDeleteRows="False" HorizontalAlignment="Left" Height="118" VerticalAlignment="Top" Width="541" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"    RowHeight="45" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" CanUserAddRows="False" AutoGenerateColumns="False" FontSize="10" Margin="0,0,-2,0"  >
+
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn >
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" >
+                                                <Image x:Name="imgPdfFatturaIntervento" HorizontalAlignment="Left" Height="20"  VerticalAlignment="Top" Source="Immagini/pdf.png" ToolTip="Visualizza la fattura della Proroga" Cursor="Hand" MouseLeftButtonDown="imgPdfFatturaIntervento_MouseLeftButtonDown_1"  />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="DATA FATTURA" SortMemberPath="DataFattura">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <DatePicker SelectedDate="{Binding DataFattura, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged_5"  />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="N. FATTURA" SortMemberPath="NumeroFattura">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <TextBox  MinWidth="50" Text="{Binding NumeroFattura, Mode=TwoWay}" TextChanged="TextBox_TextChanged_2"/>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="RICREA">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <CheckBox x:Name="cbxRicreaFatturaProroga" HorizontalAlignment="center" Checked="cbxRicreaFatturaProroga_Checked" Unchecked="cbxRicreaFatturaProroga_Checked"/>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="BONIFICO">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <CheckBox x:Name="cbxBonifico" HorizontalAlignment="center" Checked="cbxBonifico_Checked" Unchecked="cbxBonifico_Checked" />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <GroupBox Header="Note di Credito" HorizontalAlignment="Left" Margin="15,265,0,0" VerticalAlignment="Top" Foreground="#FF299ADE" BorderBrush="#FF299ADE" Width="333" Height="114">
+                        <DataGrid x:Name="dgFattureNotaDiCredito" CanUserDeleteRows="False" HorizontalAlignment="Left" Height="121" VerticalAlignment="Top" Width="541" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"   RowHeight="45" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" CanUserAddRows="False" AutoGenerateColumns="False" FontSize="10" Margin="0,0,-2,-3"  >
+
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn >
+                                    <DataGridTemplateColumn.CellTemplate >
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" >
+                                                <Image x:Name="imgPdfFatturaNotaDiCredito" HorizontalAlignment="Left" Height="20"  VerticalAlignment="Top" Source="Immagini/pdf.png" ToolTip="Visualizza la fattura della Proroga" Cursor="Hand" MouseLeftButtonDown="imgPdfFatturaNotaDiCredito_MouseLeftButtonDown"  />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="DATA FATTURA" SortMemberPath="DataFattura">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <DatePicker SelectedDate="{Binding DataFattura, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged_6"  />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="N. FATTURA" SortMemberPath="NumeroFattura">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <TextBox  MinWidth="50" Text="{Binding NumeroFattura, Mode=TwoWay}" TextChanged="TextBox_TextChanged_3"/>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="RICREA">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <CheckBox x:Name="cbxRicreaFatturaProroga" HorizontalAlignment="center" Checked="cbxRicreaFatturaProroga_Checked" Unchecked="cbxRicreaFatturaProroga_Checked"/>
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <!--<DataGridTemplateColumn Header="BONIFICO">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                                <CheckBox x:Name="cbxBonifico" HorizontalAlignment="center" Checked="cbxBonifico_Checked" Unchecked="cbxBonifico_Checked" />
+                                            </ContentControl>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>-->
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                    <GroupBox  Header="DDT" HorizontalAlignment="Left" Margin="15,195,0,0" VerticalAlignment="Top" Foreground="#FF299ADE" BorderBrush="#FF299ADE" Width="333" Height="65">
+                        <Grid Margin="177,0,-2,-11">
+                            <Image x:Name="imgPdfDdt" HorizontalAlignment="Left" Height="29" Margin="-169,7,0,0" VerticalAlignment="Top" Width="35" Source="Immagini/pdf.png" ToolTip="Visualizza il DDT" Cursor="Hand" RenderTransformOrigin="0.457,0.69" MouseLeftButtonDown="imgPdfDdt_MouseLeftButtonDown"/>
+                            <CheckBox x:Name="cbRicrea1" Content="Ricrea" HorizontalAlignment="Left" Margin="-95,16,0,0" VerticalAlignment="Top" Width="55" FontSize="10"/>
+                            <ListBox x:Name="lbCamion" Margin="-24,0,0,10" SelectionMode="Multiple" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Name="CheckBoxZone" Content="{Binding DescrizioneCamion}" Checked="CheckBoxZone_Checked" Unchecked="CheckBoxZone_Checked" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabInterventi" Header="Interventi" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="90" Background="#FFE5E5E5" Template="{DynamicResource MyTabItemControlTemplate}" Margin="-92,1,0,-1">
+                <Grid x:Name="grInterventi" Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgInterventi" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="907" Height="176" CanUserDeleteRows="True" CanUserAddRows="True" RowEditEnding="dgInterventi_RowEditEnding" SelectionChanged="dgInterventi_SelectionChanged" RowHeight="25" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" LoadingRow="dgInterventi_LoadingRow">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                				Binding="{Binding  Path=Fattura.NumeroFattura}" Header="NUMERO FATTURA" Width="120" CanUserResize="False" />
+                            <DataGridTextColumn
+                				Binding="{Binding  Path=Fattura.DataFattura,  StringFormat=\{0:dd/MM/yyyy\}}" Header="DATA FATTURA" Width="120" CanUserResize="False" />
+                            <DataGridTextColumn
+                				Binding="{Binding NumeroAddetti}" Header="OPERAI" Width="70" CanUserResize="False" />
+                            <DataGridTextColumn
+                				Binding="{Binding Ore}" Header="ORE" Width="40" CanUserResize="False" />
+                            <DataGridTextColumn
+                				Binding="{Binding Importo, StringFormat=\{0:c\}}" Header="IMPORTO" Width="80" CanUserResize="False"/>
+                            <DataGridTextColumn
+                				Binding="{Binding Iva}" Header="IVA" Width="30" CanUserResize="False"/>
+                            <DataGridTextColumn IsReadOnly="True"
+                    			Binding="{Binding ImportoNotaDiCredito, StringFormat=\{0:c\}}" Header="Ndc" Width="80" CanUserResize="False"/>
+                            <DataGridTemplateColumn Header="Corpo">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                            <CheckBox x:Name="cbxIsCorpoIntervento" HorizontalAlignment="center" IsChecked="{Binding IsCorpo, Mode=TwoWay}"  Checked="cbxIsCorpoIntervento_Checked_1" Unchecked="cbxIsCorpoIntervento_Checked_1"/>
+                                        </ContentControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Modifica">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="AButton" Width="25" Height="25" Click="AButton_Click" Cursor="Hand" BorderBrush="White" CommandParameter="{Binding idIntervento}" Background="#FFF6F6F6">
+                                            <Image Source="Immagini\edit.png" Height="15" Width="15"/>
+                                        </Button>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Se l'intervento è a &quot;CORPO&quot; ricordarsi di mettere ORE e N.OPERAI a 0" Margin="311,240,10,0" VerticalAlignment="Top" FontStyle="Italic" HorizontalContentAlignment="Right"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tabMateriali" Header="Materiali" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="90" Background="#FFE5E5E5" Template="{DynamicResource MyTabItemControlTemplate}" Margin="-4,1,0,-1">
+                <Grid x:Name="grMateriali" Background="#FFE5E5E5" RenderTransformOrigin="0.511,0.494">
+                    <DataGrid x:Name="dgMateriali" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  RowHeight="25" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10,10,414,0" VerticalAlignment="Top" Height="369"  CanUserDeleteRows="True">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn
+                				Binding="{Binding DescrizioneMateriale}" Header="MATERIALE" Width="300" CanUserResize="False"/>
+                            <DataGridTextColumn
+                				Binding="{Binding CodiceMateriale}" Header="CODICE" Width="100" CanUserResize="False" />
+                            <DataGridTemplateColumn Header="Quantità">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox x:Name="txtQuantita"  Width="25" Height="25" Cursor="Hand" BorderBrush="White" Text="{Binding Quantità, Mode=OneWay}" Background="#FFF6F6F6" TextChanged="txtQuantita_TextChanged"  >
+                                        </TextBox>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

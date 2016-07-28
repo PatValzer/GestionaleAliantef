@@ -1,0 +1,84 @@
+﻿<Window x:Class="GestionaleAliante.PagamentiIntervento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestione Pagamenti Intervento" Height="401" Width="852">
+    <Grid Background="#FFE5E5E5">
+        <Button x:Name="btnSalvaProroga" Content="SALVA" Margin="31,300,31,27" FontWeight="ExtraLight" Click="btnSalvaProroga_Click" MaxHeight="44" Height="44" Foreground="Black" FontFamily="Rockwell"/>
+        <GroupBox Header="Pagamenti" HorizontalAlignment="Left" Margin="13,10,0,0" VerticalAlignment="Top" Width="800" Height="259">
+            <Grid Margin="0,0,-2,61">
+                <DataGrid x:Name="dgPagamenti" HorizontalGridLinesBrush="#FFE4DBDB" VerticalGridLinesBrush="#FFE4DBDB" Background="White" RowBackground="#FFF6F6F6"  AutoGenerateColumns="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="790" Height="176" CanUserDeleteRows="True" CanUserAddRows="True" RowEditEnding="dgPagamenti_RowEditEnding" RowHeight="25" BorderBrush="{x:Null}" BorderThickness="0" RowStyle="{DynamicResource dgRowStyleAliante}" Style="{DynamicResource DataGridStyle1}" Template="{DynamicResource DataGridControlTemplateAliante}" ColumnHeaderStyle="{DynamicResource lclDataGridColumnHeaders}" LoadingRow="dgPagamenti_LoadingRow" FontSize="8">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+        					Binding="{Binding Descrizione}" Header="DESCRIZIONE" Width="130" CanUserResize="False" />
+                        <DataGridTextColumn
+        					Binding="{Binding Importo, StringFormat=\{0:c\}}" Header="IMPORTO" Width="50" CanUserResize="False"/>
+                        <DataGridTextColumn
+        					Binding="{Binding ImportoAcconto, StringFormat=\{0:c\}}" Header="ACCONTO" Width="50" CanUserResize="False"/>
+                        <DataGridTemplateColumn Header="Data Acconto" SortMemberPath="DataAcconto" Width="90">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                        <DatePicker Text="{Binding DataAcconto, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged"></DatePicker>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn IsReadOnly="True"
+        					Binding="{Binding ImportoNotaDiCredito, StringFormat=\{0:c\}}" Header="Ndc" Width="40" CanUserResize="False"/>
+                        <DataGridTextColumn
+        					Binding="{Binding ImportoIva, StringFormat=\{0:c\}}" Header="IVA" Width="40" CanUserResize="False" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="Bonifico">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                        <CheckBox x:Name="auto" HorizontalAlignment="center" IsChecked="{Binding Bonifico, Mode=TwoWay}" Checked="auto_Checked" Unchecked="auto_Checked" />
+                                    </ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Pagato">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                        <CheckBox x:Name="auto" HorizontalAlignment="center" IsChecked="{Binding Pagato, Mode=TwoWay}" Checked="auto_Checked_1" Unchecked="auto_Checked_1" Click="auto_Click"/>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Insoluto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                        <CheckBox x:Name="auto" HorizontalAlignment="center" IsChecked="{Binding Insoluto, Mode=TwoWay}"  Checked="auto_Checked_2" Unchecked="auto_Checked_2"/>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Data Pagamento" SortMemberPath="DataScadenzaPagamento">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                        <DatePicker Text="{Binding DataScadenzaPagamento, Mode=TwoWay}" SelectedDateChanged="DatePicker_SelectedDateChanged_1"/>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Banca" SortMemberPath="DataScadenzaPagamento">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center">
+                                        <ComboBox x:Name="cmbBanchePag"  ItemsSource="{StaticResource Banche}"  SelectedValue="{Binding idBanca}" SelectedValuePath="idBanca" DisplayMemberPath="NomeBanca"   SelectionChanged="ComboBox_SelectionChanged_1"/>
+                                    </ContentControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <Label Content="Rimanente:" HorizontalAlignment="Left" Margin="628,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.684,-2.077"/>
+        <Label x:Name="lblTotale" Content="" HorizontalAlignment="Left" Margin="702,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.684,-2.077" Width="93"/>
+
+    </Grid>
+</Window>
