@@ -28,7 +28,7 @@ namespace GestionaleAliante
 
         private void btnOKMastrino_Click(object sender, RoutedEventArgs e)
         {
-            GestioneReport.MostraPdf(GestioneReport.GeneraMastrino(_nol, dpDal.SelectedDate, dpAL.SelectedDate, (bool)cbxTotaleCliente.IsChecked));
+            GestioneReport.MostraPdf(GestioneReport.GeneraMastrino(_nol, dpDal.SelectedDate, dpAL.SelectedDate, (bool)cbxTotaleCliente.IsChecked, (bool)cbxTest.IsChecked));
             this.Close();
         }
 

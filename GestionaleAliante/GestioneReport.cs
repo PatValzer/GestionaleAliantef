@@ -174,7 +174,7 @@ namespace GestionaleAliante
             return bytes;
         }
 
-        public static byte[] GeneraMastrino(Noleggio noleggio, DateTime? dal, DateTime? al, bool totaleCliente)
+        public static byte[] GeneraMastrino(Noleggio noleggio, DateTime? dal, DateTime? al, bool totaleCliente, bool test = true)
         {
             byte[] bytes = null;
 
@@ -261,12 +261,12 @@ namespace GestionaleAliante
                 //}
             }
 
-            
+
 
 
             lr.DataSources.Add(new ReportDataSource("IndirizzoCliente", ctx.Indirizzos.Where(s => s.IdIndirizzo == noleggio.Cliente.Indirizzo.IdIndirizzo)));
             lr.DataSources.Add(new ReportDataSource("Cliente", ctx.Clientes.Where(s => s.IdCliente == noleggio.idCliente)));
-            
+
             lr.DataSources.Add(new ReportDataSource("FatturePagate", fatturePagate.OrderBy(s => s.DataFattura).ThenBy(s => s.DataScadenzaPagamento)));
             lr.DataSources.Add(new ReportDataSource("IndirizzoNoleggio", ctx.Indirizzos.Where(t => t.IdIndirizzo == noleggio.idIndirizzo)));
 
@@ -356,10 +356,58 @@ namespace GestionaleAliante
                 fatture[i].DataOperazione = fatture[i].DataFattura;
             }
 
+
+
             fatture.AddRange(fatturePagate);
             fatture.AddRange(acconti);
+
+            if (totaleCliente && test)
+            {
+
+                var year = DateTime.Now.Year;
+                if (al != null)
+                    year = al.Value.Year;
+                var dataFiltro = new DateTime(year, 1, 1);
+                var fattureVecchie = fatture.Where(s => s.DataOperazione < dataFiltro || s.DataOperazione == null).ToList();
+
+                
+                fatture = fatture.Where(s => s.DataOperazione >= dataFiltro).ToList();              
+                var totaleFattureVecchie = fattureVecchie.Where(s => s.Descrizione != "INCASSO FATTURA" && s.Descrizione != "ACCONTO").Sum(s => s.Importo );
+                var totalePagate = fattureVecchie.Where(s=> s.Descrizione == "INCASSO FATTURA").Sum(s => s.Importo); 
+                var totaleAcconti = fattureVecchie.Where(s=> s.Descrizione == "ACCONTO").Sum(s => s.Importo);
+                var fattureConNotadiCredito = fattureVecchie.Where(s => s.Descrizione != "INCASSO FATTURA" && s.Descrizione != "ACCONTO" &&  s.ImportoNotaDiCredito > 0);
+                var totaleNoteDiCredito = fattureConNotadiCredito.Sum(s => s.ImportoNotaDiCredito) - fattureVecchie.Where(s => s.Descrizione == "INCASSO FATTURA" || s.Descrizione == "ACCONTO").Where(s => s.ImportoNotaDiCredito > 0).Sum(s=> s.ImportoNotaDiCredito);
+                var fatturaRiepilogo = new vwFatture();
+                fatturaRiepilogo.Importo = totaleFattureVecchie;
+                fatturaRiepilogo.ImportoNotaDiCredito = totaleNoteDiCredito;// da controllare
+                fatturaRiepilogo.Descrizione = "TEST";
+                fatturaRiepilogo.TipoFattura = 1;
+                fatturaRiepilogo.DataOperazione = dataFiltro;
+                fatturaRiepilogo.DataFattura = fatturaRiepilogo.DataOperazione;
+                fatturaRiepilogo.DataScadenzaPagamento = fatturaRiepilogo.DataOperazione;
+                fatturaRiepilogo.Pagato = 1;
+                fatturaRiepilogo.Insoluto = 0;
+                fatturaRiepilogo.NumeroProroga = 0;
+                fatturaRiepilogo.NumeroFattura = 0;
+                fatture.Add(fatturaRiepilogo);
+                var fatturaRiepilogo2 = new vwFatture();
+                fatturaRiepilogo2.Importo = totalePagate + totaleAcconti + totaleNoteDiCredito;
+                fatturaRiepilogo2.ImportoNotaDiCredito = totaleNoteDiCredito; //da controllare
+                fatturaRiepilogo2.Descrizione = "INCASSO FATTURA";
+                fatturaRiepilogo2.TipoFattura = 1;
+                fatturaRiepilogo2.DataOperazione = dataFiltro;
+                fatturaRiepilogo2.DataFattura = fatturaRiepilogo2.DataOperazione;
+                fatturaRiepilogo2.DataScadenzaPagamento = fatturaRiepilogo2.DataOperazione;
+                fatturaRiepilogo2.DataPagamento = fatturaRiepilogo2.DataOperazione;
+                fatturaRiepilogo2.Pagato = 0;
+                fatturaRiepilogo2.Insoluto = 0;
+                fatturaRiepilogo2.NumeroProroga = 0;
+                fatturaRiepilogo2.NumeroFattura = 0;
+                fatture.Add(fatturaRiepilogo2);
+            }
+
             lr.DataSources.Add(new ReportDataSource("Fatture", fatture.OrderBy(s => s.DataOperazione).ThenBy(s => s.DataScadenzaPagamento)));
-            
+
             try
             {
                 lr.SetParameters(parameters);

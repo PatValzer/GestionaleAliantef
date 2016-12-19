@@ -11,6 +11,7 @@
             <Button x:Name="btnCancellaMastrino" Content="Cancella" HorizontalAlignment="Left" Margin="54,129,0,0" VerticalAlignment="Top" Width="75" Click="btnCancellaMastrino_Click" RenderTransformOrigin="0.453,1.9"/>
             <Button x:Name="btnOKMastrino" Content="OK" HorizontalAlignment="Left" Margin="212,129,0,0" VerticalAlignment="Top" Width="75" Click="btnOKMastrino_Click"/>
             <CheckBox x:Name="cbxTotaleCliente" Content="Mastrino Totale Cliente" HorizontalAlignment="Left" Margin="55,98,0,0" VerticalAlignment="Top" Width="232"/>
+            <CheckBox x:Name="cbxTest" Content="Test" HorizontalAlignment="Left" Margin="218,98,-153,0" VerticalAlignment="Top" Width="232"/>
         </Grid>
 
     </Grid>
